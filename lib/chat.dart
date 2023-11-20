@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'firebase_options.dart';
 
-import 'main.dart';
-import 'login.dart';
+import 'package:firebase_project/setting.dart';
+import 'package:flutter/material.dart';
+
 import 'shift.dart';
 
 class Chat extends StatelessWidget {
@@ -21,6 +18,7 @@ class Chat extends StatelessWidget {
       home: Group(),
       routes: {
         '/Shift': (context) => Shift(),
+        '/Setting': (context) => Setting(),
       },
     );
   }
@@ -28,12 +26,13 @@ class Chat extends StatelessWidget {
 
 class Group extends StatelessWidget {
   const Group({super.key});
-  static var _value;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('グループチャット'),
+
       ),
       body: const Center(
         child: Text(
@@ -50,7 +49,11 @@ class Group extends StatelessWidget {
               backgroundColor: Colors.blueAccent),
           BottomNavigationBarItem(
             label: 'チャット',
-            icon: Icon(Icons.location_city),
+            icon: Icon(Icons.chat),
+          ),
+          BottomNavigationBarItem(
+            label: '設定',
+            icon: Icon(Icons.settings),
           ),
         ],
         onTap: (int value) {
@@ -58,6 +61,8 @@ class Group extends StatelessWidget {
             Navigator.pushNamed(context, '/Shift');
           } else if (value == 1) {
             Navigator.pushNamed(context, '/Chat');
+          } else if (value == 2) {
+            Navigator.pushNamed(context, '/Setting');
           }
         },
       ),
